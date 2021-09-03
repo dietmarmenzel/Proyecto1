@@ -1,3 +1,12 @@
+//************************************************************************************
+//Universidad del Valle de Guatemala
+//BE3015 - Electronica Digital 2
+//Nombre: Gunther Dietmar Menzel
+//PROYECTO 1
+//************************************************************************************
+
+
+
 #include <Arduino.h>
 
 void setup() {
