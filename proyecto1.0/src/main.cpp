@@ -50,24 +50,29 @@
 //************************************************************************************
 //Prototipos de funciones
 //************************************************************************************
+//Función creada para el sensor de temperatura
 void MedicionDeTemperatura (void);
 
+//Función creada para las LEDs (semáforo de temperatura)
 void SemaforoDeTemperatura (void);
 
+//Función creada para configurar el Servo
 void ConfiguracionDelServo (void);
 
+//Función creada para el posicionamiento del Servo
 void RelojDeSemaforo (void);
 
+//Función creada para el resultado de las Displays
 void Displays (int Resultado);
 
 //************************************************************************************
 //Variables globales
 //************************************************************************************
-float Temperatura = 0.0; //Definiendo float para poder
+float Temperatura = 0.0; //Definiendo float para poder tener decimales
 
-float dutycycle = 0.0; //
+float dutycycle = 0.0; //El ciclo del trabajo del Servo
 
-int Resultado = 0; //valor inicial
+int Resultado = 0; //Valor inicial
 
 int Decenas = 0;
 
@@ -79,10 +84,10 @@ int Decimales = 0;
 //Configuracion
 //************************************************************************************
 void setup() {
-
+  //Configuracion a cada Pin de entrada
   pinMode(Boton, INPUT);
   pinMode(Sensor, INPUT);
-
+  //Configuracion a cada Pin de salida
   pinMode(ServoMotor, OUTPUT);
   pinMode(LEDverde, OUTPUT);
   pinMode(LEDamarillo, OUTPUT);
@@ -98,7 +103,7 @@ void setup() {
   pinMode(Transistor2, OUTPUT);
   pinMode(Transistor3, OUTPUT);
 
-  ConfiguracionDelServo (); //Definiendo parametros del servo
+  ConfiguracionDelServo (); //Definiendo parámetros del servo
   Serial.begin(115200);
 
 }
@@ -107,19 +112,21 @@ void setup() {
 //************************************************************************************
 //Loop principal
 //************************************************************************************
-
+  //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, HIGH);
   digitalWrite(Transistor2, LOW);
   digitalWrite(Transistor3, LOW);
   Displays(Decenas);
   delay(10);
-
+  
+  //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, LOW);
   digitalWrite(Transistor2, HIGH);
   digitalWrite(Transistor3, LOW);
   Displays(Unidades);
   delay(10);
-
+  
+  //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, LOW);
   digitalWrite(Transistor2, LOW);
   digitalWrite(Transistor3, HIGH);
@@ -132,13 +139,16 @@ void setup() {
   delay(1);
 }
 
+//Configurando el despliegue del resultado en las Displays
 void Displays(int Resultado){
   Decenas = Temperatura/10;
   Unidades = Temperatura-Decenas*10;
   Decimales = ((Temperatura*1000)-(Decenas*1000)-(Unidades*100))/1000;
+  
+  //Para el resultado 0, el segmento G se apaga y las demás se encienden
   if (digitalRead(Resultado)==0){
 
-        digitalWrite(A, LOW);
+    digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
     digitalWrite(D, LOW);
@@ -147,6 +157,7 @@ void Displays(int Resultado){
     digitalWrite(G, HIGH);
     
   }
+  //Para el resultado 1, el segmento A, D, E, F y G se apagan y las demás se encienden
   else if(digitalRead(Resultado)==1){
     digitalWrite(A, HIGH);
     digitalWrite(B, LOW);
@@ -156,7 +167,7 @@ void Displays(int Resultado){
     digitalWrite(F, HIGH);
     digitalWrite(G, HIGH);
   }
-    
+  //Para el resultado 2, el segmento C y F se apagan y las demás se encienden  
   else if(digitalRead(Resultado)==2){  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
@@ -166,6 +177,7 @@ void Displays(int Resultado){
     digitalWrite(F, HIGH);
     digitalWrite(G, LOW);
   }
+  //Para el resultado 3, el segmento E y F se apagan y las demás se encienden 
   else if(digitalRead(Resultado)==3){  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
@@ -175,6 +187,7 @@ void Displays(int Resultado){
     digitalWrite(F, HIGH);
     digitalWrite(G, LOW);
   }
+  //Para el resultado 4, el segmento A, D y E se apagan y las demás se encienden 
   else if(digitalRead(Resultado)==4){  
     digitalWrite(A, HIGH);
     digitalWrite(B, LOW);
@@ -184,6 +197,7 @@ void Displays(int Resultado){
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
   }
+  //Para el resultado 5, el segmento B y E se apagan y las demás se encienden
   else if(digitalRead(Resultado)==5){  
     digitalWrite(A, LOW);
     digitalWrite(B, HIGH);
@@ -193,6 +207,7 @@ void Displays(int Resultado){
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
   }
+  //Para el resultado 6, el segmento B se apaga y las demás se encienden
   else if(digitalRead(Resultado)==6){  
     digitalWrite(A, LOW);
     digitalWrite(B, HIGH);
@@ -202,6 +217,7 @@ void Displays(int Resultado){
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
   }
+  //Para el resultado 7, el segmento D, E, F y G se apagan y las demás se encienden
   else if(digitalRead(Resultado)==7){  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
@@ -211,6 +227,7 @@ void Displays(int Resultado){
     digitalWrite(F, HIGH);
     digitalWrite(G, HIGH);
   }
+  //Para el resultado 8, todos los segmentos se encienden
   else if(digitalRead(Resultado)==8){  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
@@ -220,6 +237,7 @@ void Displays(int Resultado){
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
   }
+  //Para el resultado 9, el segmento E se apaga y las demás se encienden 
   else if(digitalRead(Resultado)==9){  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
@@ -232,63 +250,67 @@ void Displays(int Resultado){
   }
 
 
-
+//Llamando a la función del sensor de temperatura
 void MedicionDeTemperatura (void) {
   if (digitalRead(Boton) == LOW) {
     Temperatura = analogRead(Sensor); //Leer valor analogo del sensor
     Temperatura = Temperatura/10;
-    Serial.println(Temperatura); 
+    Serial.println(Temperatura); //Mostrar temperatura en el Monitor Serie
   }
 }
 
-
+//Definiendo bajo que parámetros estarán encendiadas las LEDs
 void SemaforoDeTemperatura (void) {
   if (Temperatura < 37.0) {
-    digitalWrite(LEDverde, HIGH);
+    digitalWrite(LEDverde, HIGH); //LED verde se enciende, las demás se apagan
     digitalWrite(LEDamarillo, LOW);
     digitalWrite(LEDrojo, LOW);
   }
 
   if (Temperatura > 37.0 & Temperatura < 37.5) {
     digitalWrite(LEDverde, LOW);
-    digitalWrite(LEDamarillo, HIGH);
+    digitalWrite(LEDamarillo, HIGH); //LED amarillo se enciende, las demás se apagan
     digitalWrite(LEDrojo, LOW);
   }
 
   if (Temperatura > 37.5) {
     digitalWrite(LEDverde, LOW);
     digitalWrite(LEDamarillo, LOW);
-    digitalWrite(LEDrojo, HIGH);
+    digitalWrite(LEDrojo, HIGH); //LED rojo se enciende, las demás se apagan
   }
 
 }
 
+//Llamando a la función del movimiento del servo y configurándolo con su canal, frecuencia y resolución
 void ConfiguracionDelServo (void) {
   ledcSetup(CanalServoMotor, Frecuencia, Resolucion);
   ledcAttachPin(ServoMotor, CanalServoMotor);
 
 }
-
+//Definiendo bajo que parámetros y hacia donde se moverá el Servo
 void RelojDeSemaforo (void) {
   if (Temperatura < 37.0) {
-    dutycycle = 5; //ciclo del servo
+    //El servo se moverá hacia el área de color verde
+    dutycycle = 5; //Ciclo del servo
     delay(20);
     ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
 
 
   }
-
+  //El servo se moverá hacia el área de color amarillo
   if (Temperatura > 37.0 & Temperatura < 37.5) {
-    dutycycle = 19; //ciclo del servo
+    dutycycle = 19; //Ciclo del servo
     delay(20);
     ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
 
   }
-
+  //El servo se moverá hacia el área de color rojo
   if (Temperatura > 37.5) {
-    dutycycle = 25; //ciclo del servo
+    dutycycle = 25; //Ciclo del servo
     delay(20);
     ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
 
   }
   }
+
+  //FIN DEL CÓDIGO
