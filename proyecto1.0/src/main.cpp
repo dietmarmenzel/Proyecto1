@@ -32,3 +32,17 @@
 #define Transistor1 14
 #define Transistor2 12
 #define Transistor3 13
+
+//PWM del Servo
+#define CanalServoMotor 1
+#define Frecuencia 50
+#define Resolucion 8
+
+//PWM de LEDverde
+#define CanalLEDverde 2
+
+//PWM de LEDamarillo
+#define CanalLEDamarillo 3
+
+//PWM de LEDrojo
+#define CanalLEDrojo 4
