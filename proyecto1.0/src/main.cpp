@@ -118,3 +118,33 @@ void setup() {
   digitalWrite(Transistor3, HIGH);
   Displays(Decimales);
   delay(10);
+
+void MedicionDeTemperatura (void) {
+  if (digitalRead(Boton) == LOW) {
+    Temperatura = analogRead(Sensor); //Leer valor analogo del sensor
+    Temperatura = Temperatura/10;
+    Serial.println(Temperatura); 
+  }
+}
+
+
+void SemaforoDeTemperatura (void) {
+  if (Temperatura < 37.0) {
+    digitalWrite(LEDverde, HIGH);
+    digitalWrite(LEDamarillo, LOW);
+    digitalWrite(LEDrojo, LOW);
+  }
+
+  if (Temperatura > 37.0 & Temperatura < 37.5) {
+    digitalWrite(LEDverde, LOW);
+    digitalWrite(LEDamarillo, HIGH);
+    digitalWrite(LEDrojo, LOW);
+  }
+
+  if (Temperatura > 37.5) {
+    digitalWrite(LEDverde, LOW);
+    digitalWrite(LEDamarillo, LOW);
+    digitalWrite(LEDrojo, HIGH);
+  }
+
+}
