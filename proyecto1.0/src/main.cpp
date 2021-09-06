@@ -165,7 +165,7 @@ void setup() {
   }
 
   Displays(Resultado);
-  
+
   //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, HIGH);
   digitalWrite(Transistor2, LOW);
@@ -349,7 +349,6 @@ void RelojDeSemaforo (void) {
     delay(20);
     ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
 
-
   }
   //El servo se moverá hacia el área de color amarillo
   if (Temperatura > 37.0 & Temperatura < 37.5) {
@@ -366,5 +365,4 @@ void RelojDeSemaforo (void) {
 
   }
   }
-
   //FIN DEL CÓDIGO
