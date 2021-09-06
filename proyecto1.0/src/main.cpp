@@ -69,6 +69,11 @@ float dutycycle = 0.0; //
 
 int Resultado = 0; //valor inicial
 
+int Decenas = 0;
+
+int Unidades = 0;
+
+int Decimales = 0;
 
 //************************************************************************************
 //Configuracion
