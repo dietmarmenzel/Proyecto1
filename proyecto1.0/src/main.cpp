@@ -58,6 +58,8 @@ void ConfiguracionDelServo (void);
 
 void RelojDeSemaforo (void);
 
+void Displays (int Resultado);
+
 //************************************************************************************
 //Variables globales
 //************************************************************************************
