@@ -11,6 +11,22 @@
 //************************************************************************************
 #include <Arduino.h>
 
+//Adafruit IO key
+#define IO_USERNAME "guntherdietmar"
+#define IO_KEY "aio_ymKI04ClsoNBp4qMGNFHRSg3SJsQ"
+
+//*********************************** WIFI *******************************************
+
+//Datos de la señal WIFI
+#define WIFI_SSID "mensajera1"
+#define WIFI_PASS "since1998"
+
+//Librería de Adafruit
+#include "AdafruitIO_WiFi.h"  
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
+AdafruitIO_Feed *termometro = io.feed("Proyecto Sensor de Temperatura");
+
 //************************************************************************************
 //Definición de pines
 //************************************************************************************
