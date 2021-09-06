@@ -71,6 +71,30 @@ int Resultado = 0; //valor inicial
 //************************************************************************************
 //Configuracion
 //************************************************************************************
+void setup() {
+
+  pinMode(Boton, INPUT);
+  pinMode(Sensor, INPUT);
+
+  pinMode(ServoMotor, OUTPUT);
+  pinMode(LEDverde, OUTPUT);
+  pinMode(LEDamarillo, OUTPUT);
+  pinMode(LEDrojo, OUTPUT);
+  pinMode(A, OUTPUT);
+  pinMode(B, OUTPUT);
+  pinMode(C, OUTPUT);
+  pinMode(D, OUTPUT);
+  pinMode(E, OUTPUT);
+  pinMode(F, OUTPUT);
+  pinMode(G, OUTPUT);
+  pinMode(Transistor1, OUTPUT);
+  pinMode(Transistor2, OUTPUT);
+  pinMode(Transistor3, OUTPUT);
+
+  ConfiguracionDelServo (); //Definiendo parametros del servo
+  Serial.begin(115200);
+
+}
 
 
 //************************************************************************************
