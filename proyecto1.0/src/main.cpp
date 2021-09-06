@@ -126,6 +126,113 @@ void setup() {
   Displays(Decimales);
   delay(10);
 
+  MedicionDeTemperatura();
+  SemaforoDeTemperatura();
+  RelojDeSemaforo();
+  delay(1);
+}
+
+void Displays(int Resultado){
+  Decenas = Temperatura/10;
+  Unidades = Temperatura-Decenas*10;
+  Decimales = ((Temperatura*1000)-(Decenas*1000)-(Unidades*100))/1000;
+  if (digitalRead(Resultado)==0){
+
+        digitalWrite(A, LOW);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, LOW);
+    digitalWrite(E, LOW);
+    digitalWrite(F, LOW);
+    digitalWrite(G, HIGH);
+    
+  }
+  else if(digitalRead(Resultado)==1){
+    digitalWrite(A, HIGH);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, HIGH);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, HIGH);
+    digitalWrite(G, HIGH);
+  }
+    
+  else if(digitalRead(Resultado)==2){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, LOW);
+    digitalWrite(C, HIGH);
+    digitalWrite(D, LOW);
+    digitalWrite(E, LOW);
+    digitalWrite(F, HIGH);
+    digitalWrite(G, LOW);
+  }
+  else if(digitalRead(Resultado)==3){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, LOW);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, HIGH);
+    digitalWrite(G, LOW);
+  }
+  else if(digitalRead(Resultado)==4){  
+    digitalWrite(A, HIGH);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, HIGH);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, LOW);
+    digitalWrite(G, LOW);
+  }
+  else if(digitalRead(Resultado)==5){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, HIGH);
+    digitalWrite(C, LOW);
+    digitalWrite(D, LOW);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, LOW);
+    digitalWrite(G, LOW);
+  }
+  else if(digitalRead(Resultado)==6){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, HIGH);
+    digitalWrite(C, LOW);
+    digitalWrite(D, LOW);
+    digitalWrite(E, LOW);
+    digitalWrite(F, LOW);
+    digitalWrite(G, LOW);
+  }
+  else if(digitalRead(Resultado)==7){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, HIGH);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, HIGH);
+    digitalWrite(G, HIGH);
+  }
+  else if(digitalRead(Resultado)==8){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, LOW);
+    digitalWrite(E, LOW);
+    digitalWrite(F, LOW);
+    digitalWrite(G, LOW);
+  }
+  else if(digitalRead(Resultado)==9){  
+    digitalWrite(A, LOW);
+    digitalWrite(B, LOW);
+    digitalWrite(C, LOW);
+    digitalWrite(D, LOW);
+    digitalWrite(E, HIGH);
+    digitalWrite(F, LOW);
+    digitalWrite(G, LOW);
+  }
+  }
+
+
+
 void MedicionDeTemperatura (void) {
   if (digitalRead(Boton) == LOW) {
     Temperatura = analogRead(Sensor); //Leer valor analogo del sensor
