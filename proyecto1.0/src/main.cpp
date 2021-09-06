@@ -96,10 +96,32 @@ int Unidades = 0;
 
 int Decimales = 0;
 
+//Datos para Adafruit
+int count = 0;
+
+long LastTime; 
+
+int sampleTime = 3000;
+
 //************************************************************************************
 //Configuracion
 //************************************************************************************
 void setup() {
+  //Datos obtenidos del documento Publish para Adafruit
+  while(! Serial);
+
+  Serial.print("Connecting to Adafruit IO");
+  io.connect();
+
+  while(io.status() < AIO_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println();
+  Serial.println(io.statusText());
+  LastTime = millis();
+
   //Configuracion a cada Pin de entrada
   pinMode(Boton, INPUT);
   pinMode(Sensor, INPUT);
