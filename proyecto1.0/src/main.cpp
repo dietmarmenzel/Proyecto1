@@ -46,3 +46,14 @@
 
 //PWM de LEDrojo
 #define CanalLEDrojo 4
+
+//************************************************************************************
+//Prototipos de funciones
+//************************************************************************************
+void MedicionDeTemperatura (void);
+
+void SemaforoDeTemperatura (void);
+
+void ConfiguracionDelServo (void);
+
+void RelojDeSemaforo (void);
