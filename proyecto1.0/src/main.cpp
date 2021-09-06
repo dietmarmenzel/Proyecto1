@@ -148,3 +148,33 @@ void SemaforoDeTemperatura (void) {
   }
 
 }
+
+void ConfiguracionDelServo (void) {
+  ledcSetup(CanalServoMotor, Frecuencia, Resolucion);
+  ledcAttachPin(ServoMotor, CanalServoMotor);
+
+}
+
+void RelojDeSemaforo (void) {
+  if (Temperatura < 37.0) {
+    dutycycle = 5; //ciclo del servo
+    delay(20);
+    ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
+
+
+  }
+
+  if (Temperatura > 37.0 & Temperatura < 37.5) {
+    dutycycle = 19; //ciclo del servo
+    delay(20);
+    ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
+
+  }
+
+  if (Temperatura > 37.5) {
+    dutycycle = 25; //ciclo del servo
+    delay(20);
+    ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
+
+  }
+  }
