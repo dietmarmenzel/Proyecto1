@@ -11,11 +11,24 @@
 //************************************************************************************
 #include <Arduino.h>
 
-
-void setup() {
-  // put your setup code here, to run once:
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+//************************************************************************************
+//Definición de pines
+//************************************************************************************
+//Entradas
+#define Boton 34
+#define Sensor 33
+//Salidas
+#define ServoMotor 32
+#define LEDverde 25
+#define LEDamarillo 26
+#define LEDrojo 27
+#define A 21
+#define B 19
+#define C 18
+#define D 5
+#define E 17
+#define F 16
+#define G 4
+#define Transistor1 14
+#define Transistor2 12
+#define Transistor3 13
