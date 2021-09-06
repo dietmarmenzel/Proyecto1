@@ -100,3 +100,21 @@ void setup() {
 //************************************************************************************
 //Loop principal
 //************************************************************************************
+
+  digitalWrite(Transistor1, HIGH);
+  digitalWrite(Transistor2, LOW);
+  digitalWrite(Transistor3, LOW);
+  Displays(Decenas);
+  delay(10);
+
+  digitalWrite(Transistor1, LOW);
+  digitalWrite(Transistor2, HIGH);
+  digitalWrite(Transistor3, LOW);
+  Displays(Unidades);
+  delay(10);
+
+  digitalWrite(Transistor1, LOW);
+  digitalWrite(Transistor2, LOW);
+  digitalWrite(Transistor3, HIGH);
+  Displays(Decimales);
+  delay(10);
