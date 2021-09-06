@@ -150,6 +150,22 @@ void setup() {
 //************************************************************************************
 //Loop principal
 //************************************************************************************
+  void loop() {
+
+  if (millis()- LastTime >= sampleTime){
+    io.run();
+ 
+    Serial.print("sending -> ");
+    Serial.println(count);
+    termometro->save(Temperatura);
+
+    count++;
+    
+    LastTime = millis();
+  }
+
+  Displays(Resultado);
+  
   //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, HIGH);
   digitalWrite(Transistor2, LOW);
