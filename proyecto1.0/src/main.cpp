@@ -198,6 +198,15 @@ void Displays(int Resultado){
   Decenas = Temperatura/10;
   Unidades = Temperatura-Decenas*10;
   Decimales = ((Temperatura*1000)-(Decenas*1000)-(Unidades*100))/1000;
+  Serial.println("Decenas");
+  Serial.println(Decenas);
+  Unidades = Temperatura-Decenas*10;
+  Serial.println("Unidades");
+  Serial.println(Unidades);
+  Decimales = (Temperatura*10)-(Decenas*100)-(Unidades*10);
+  Serial.println("Decimales");
+  Serial.println(Decimales);
+  
   
   //Para el resultado 0, el segmento G se apaga y las demás se encienden
   if (digitalRead(Resultado)==0){
