@@ -195,22 +195,22 @@ void setup() {
 
 //Configurando el despliegue del resultado en las Displays
 void Displays(int Resultado){
-  Decenas = Temperatura/10;
-  Unidades = Temperatura-Decenas*10;
-  Decimales = ((Temperatura*1000)-(Decenas*1000)-(Unidades*100))/1000;
+  Decenas = Temperatura/10; //Fórmula para las decenas
+  Unidades = Temperatura-Decenas*10; //Fórmula para las unidades
+  Decimales = ((Temperatura*1000)-(Decenas*1000)-(Unidades*100))/1000; //Fórmula para los decimales
   Serial.println("Decenas");
-  Serial.println(Decenas);
+  Serial.println(Decenas); //Imprimir en el monitor serie las decenas de la temperatura
   Unidades = Temperatura-Decenas*10;
-  Serial.println("Unidades");
-  Serial.println(Unidades);
+  Serial.println("Unidades"); 
+  Serial.println(Unidades); //Imprimir en el monitor serie las unidades de la temperatura
   Decimales = (Temperatura*10)-(Decenas*100)-(Unidades*10);
   Serial.println("Decimales");
-  Serial.println(Decimales);
+  Serial.println(Decimales); //Imprimir en el monitor serie los decimales de la temperatura
   
-  
+    switch (Resultado)
+    {
   //Para el resultado 0, el segmento G se apaga y las demás se encienden
-  if (digitalRead(Resultado)==0){
-
+  case 0:
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -218,10 +218,10 @@ void Displays(int Resultado){
     digitalWrite(E, LOW);
     digitalWrite(F, LOW);
     digitalWrite(G, HIGH);
-    
-  }
+    break;
+
   //Para el resultado 1, el segmento A, D, E, F y G se apagan y las demás se encienden
-  else if(digitalRead(Resultado)==1){
+  case 1:
     digitalWrite(A, HIGH);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -229,9 +229,10 @@ void Displays(int Resultado){
     digitalWrite(E, HIGH);
     digitalWrite(F, HIGH);
     digitalWrite(G, HIGH);
-  }
+    break;
+  
   //Para el resultado 2, el segmento C y F se apagan y las demás se encienden  
-  else if(digitalRead(Resultado)==2){  
+ case 2: 
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, HIGH);
@@ -239,9 +240,10 @@ void Displays(int Resultado){
     digitalWrite(E, LOW);
     digitalWrite(F, HIGH);
     digitalWrite(G, LOW);
-  }
+    break;
+
   //Para el resultado 3, el segmento E y F se apagan y las demás se encienden 
-  else if(digitalRead(Resultado)==3){  
+  case 3:  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -249,9 +251,10 @@ void Displays(int Resultado){
     digitalWrite(E, HIGH);
     digitalWrite(F, HIGH);
     digitalWrite(G, LOW);
-  }
+    break;
+
   //Para el resultado 4, el segmento A, D y E se apagan y las demás se encienden 
-  else if(digitalRead(Resultado)==4){  
+  case 4:  
     digitalWrite(A, HIGH);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -259,9 +262,10 @@ void Displays(int Resultado){
     digitalWrite(E, HIGH);
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
-  }
+    break;
+  
   //Para el resultado 5, el segmento B y E se apagan y las demás se encienden
-  else if(digitalRead(Resultado)==5){  
+  case 5:  
     digitalWrite(A, LOW);
     digitalWrite(B, HIGH);
     digitalWrite(C, LOW);
@@ -269,9 +273,10 @@ void Displays(int Resultado){
     digitalWrite(E, HIGH);
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
-  }
+    break;
+  
   //Para el resultado 6, el segmento B se apaga y las demás se encienden
-  else if(digitalRead(Resultado)==6){  
+  case 6:  
     digitalWrite(A, LOW);
     digitalWrite(B, HIGH);
     digitalWrite(C, LOW);
@@ -279,9 +284,10 @@ void Displays(int Resultado){
     digitalWrite(E, LOW);
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
-  }
+    break;
+  
   //Para el resultado 7, el segmento D, E, F y G se apagan y las demás se encienden
-  else if(digitalRead(Resultado)==7){  
+  case 7: 
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -289,9 +295,10 @@ void Displays(int Resultado){
     digitalWrite(E, HIGH);
     digitalWrite(F, HIGH);
     digitalWrite(G, HIGH);
-  }
+    break;
+  
   //Para el resultado 8, todos los segmentos se encienden
-  else if(digitalRead(Resultado)==8){  
+  case 8: 
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -299,9 +306,10 @@ void Displays(int Resultado){
     digitalWrite(E, LOW);
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
-  }
+    break;
+  
   //Para el resultado 9, el segmento E se apaga y las demás se encienden 
-  else if(digitalRead(Resultado)==9){  
+  case 9:  
     digitalWrite(A, LOW);
     digitalWrite(B, LOW);
     digitalWrite(C, LOW);
@@ -309,9 +317,9 @@ void Displays(int Resultado){
     digitalWrite(E, HIGH);
     digitalWrite(F, LOW);
     digitalWrite(G, LOW);
+    break;
+  
   }
-  }
-
 
 //Llamando a la función del sensor de temperatura
 void MedicionDeTemperatura (void) {
