@@ -1,7 +1,7 @@
 //************************************************************************************
 //Universidad del Valle de Guatemala
 //BE3015 - Electronica Digital 2
-//Nombre: Gunther Dietmar Menzel
+//Nombre: Gunther Dietmar Menzel - 19106
 //PROYECTO 1
 //************************************************************************************
 
@@ -12,14 +12,14 @@
 #include <Arduino.h>
 
 //Adafruit IO key
-#define IO_USERNAME "guntherdietmar"
-#define IO_KEY "aio_ymKI04ClsoNBp4qMGNFHRSg3SJsQ"
+#define IO_USERNAME "guntherdietmar" //Mi usuario
+#define IO_KEY "aio_ymKI04ClsoNBp4qMGNFHRSg3SJsQ" //Mi IO KEY
 
 //*********************************** WIFI *******************************************
 
 //Datos de la señal WIFI
-#define WIFI_SSID "mensajera1"
-#define WIFI_PASS "since1998"
+#define WIFI_SSID "mensajera1" //Nombre de mi red de WIFI
+#define WIFI_PASS "since1998" //Contraseña de mi red de WIFI
 
 //Librería de Adafruit
 #include "AdafruitIO_WiFi.h"  
@@ -107,7 +107,7 @@ int sampleTime = 3000;
 //Configuracion
 //************************************************************************************
 void setup() {
-  //Datos obtenidos del documento Publish para Adafruit
+  //Datos obtenidos del documento Publish para conectar a Adafruit
   while(! Serial);
 
   Serial.print("Connecting to Adafruit IO");
@@ -151,7 +151,7 @@ void setup() {
 //Loop principal
 //************************************************************************************
   void loop() {
-
+  //Conectando y enviando a Adafruit y enseñando en Monitor Serie
   if (millis()- LastTime >= sampleTime){
     io.run();
  
@@ -167,24 +167,24 @@ void setup() {
   Displays(Resultado);
 
   //Configurando el estado de la salida de los Transistores
-  digitalWrite(Transistor1, HIGH);
+  digitalWrite(Transistor1, HIGH); //Transistor 1 encendido, los demás apagados
   digitalWrite(Transistor2, LOW);
   digitalWrite(Transistor3, LOW);
-  Displays(Decenas);
+  Displays(Decenas); //Transistor 1 enseñando el número de decenas
   delay(5);
   
   //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, LOW);
-  digitalWrite(Transistor2, HIGH);
+  digitalWrite(Transistor2, HIGH); //Transistor 2 encendido, los demás apagados
   digitalWrite(Transistor3, LOW);
-  Displays(Unidades);
+  Displays(Unidades); //Transistor 2 enseñando el número de unidades
   delay(5);
   
   //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, LOW);
   digitalWrite(Transistor2, LOW);
-  digitalWrite(Transistor3, HIGH);
-  Displays(Decimales);
+  digitalWrite(Transistor3, HIGH); //Transistor 3 encendido, los demás apagados
+  Displays(Decimales); //Transistor 3 enseñando el número de decimales
   delay(5);
 
   MedicionDeTemperatura();
@@ -196,17 +196,16 @@ void setup() {
 //Configurando el despliegue del resultado en las Displays
 void Displays(int Resultado){
   Decenas = Temperatura/10; //Fórmula para las decenas
-  Unidades = Temperatura-Decenas*10; //Fórmula para las unidades
-  Decimales = ((Temperatura*1000)-(Decenas*1000)-(Unidades*100))/1000; //Fórmula para los decimales
   Serial.println("Decenas");
   Serial.println(Decenas); //Imprimir en el monitor serie las decenas de la temperatura
-  Unidades = Temperatura-Decenas*10;
+  Unidades = Temperatura-Decenas*10; //Fórmula para las unidades
   Serial.println("Unidades"); 
   Serial.println(Unidades); //Imprimir en el monitor serie las unidades de la temperatura
-  Decimales = (Temperatura*10)-(Decenas*100)-(Unidades*10);
+  Decimales = (Temperatura*10)-(Decenas*100)-(Unidades*10); //Fórmula para los decimales
   Serial.println("Decimales");
   Serial.println(Decimales); //Imprimir en el monitor serie los decimales de la temperatura
   
+    //Inicializando la función switch para que compare el valor de la variablecon los valores especificados en las instrucciones case
     switch (Resultado)
     {
   //Para el resultado 0, el segmento G se apaga y las demás se encienden
@@ -361,8 +360,8 @@ void ConfiguracionDelServo (void) {
 }
 //Definiendo bajo que parámetros y hacia donde se moverá el Servo
 void RelojDeSemaforo (void) {
+  //El servo se moverá hacia el área de color verde
   if (Temperatura < 37.0) {
-    //El servo se moverá hacia el área de color verde
     dutycycle = 5; //Ciclo del servo
     delay(20);
     ledcWrite(CanalServoMotor, dutycycle); //Trabajo del PWM
