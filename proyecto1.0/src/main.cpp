@@ -90,11 +90,11 @@ float dutycycle = 0.0; //El ciclo del trabajo del Servo
 
 int Resultado = 0; //Valor inicial
 
-int Decenas = 0;
+int Decenas = 0; //Valor inicial
 
-int Unidades = 0;
+int Unidades = 0; //Valor inicial
 
-int Decimales = 0;
+int Decimales = 0; //Valor inicial
 
 //Datos para Adafruit
 int count = 0;
@@ -171,26 +171,26 @@ void setup() {
   digitalWrite(Transistor2, LOW);
   digitalWrite(Transistor3, LOW);
   Displays(Decenas);
-  delay(10);
+  delay(5);
   
   //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, LOW);
   digitalWrite(Transistor2, HIGH);
   digitalWrite(Transistor3, LOW);
   Displays(Unidades);
-  delay(10);
+  delay(5);
   
   //Configurando el estado de la salida de los Transistores
   digitalWrite(Transistor1, LOW);
   digitalWrite(Transistor2, LOW);
   digitalWrite(Transistor3, HIGH);
   Displays(Decimales);
-  delay(10);
+  delay(5);
 
   MedicionDeTemperatura();
   SemaforoDeTemperatura();
   RelojDeSemaforo();
-  delay(1);
+  delay(10);
 }
 
 //Configurando el despliegue del resultado en las Displays
