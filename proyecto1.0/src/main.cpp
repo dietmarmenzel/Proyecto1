@@ -320,6 +320,7 @@ void Displays(int Resultado){
     break;
   
   }
+}
 
 //Llamando a la función del sensor de temperatura
 void MedicionDeTemperatura (void) {
